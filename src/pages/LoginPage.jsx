@@ -25,26 +25,6 @@ export default function LoginPage() {
         });
     }
 
-    /*function handleLogin() {
-        userActions.login(email, password)
-        .then(res => {
-            console.log(res);
-            res.json()
-        })
-        .then(data => {
-            console.log(data);
-          //setToken(data.token)
-          //userKit.setToken(data.token)
-        }).catch(err => console.log(err));
-      }*/
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    }
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    }
 
     return (
         <div className="container">
@@ -54,11 +34,11 @@ export default function LoginPage() {
                         <h5 className="card-title">Login</h5>
                             <div className="form-group">
                                 <label htmlFor="email">Email Address</label>
-                                <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={handleEmailChange}/>
+                                <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control" id="password" placeholder="Password" onChange={handlePasswordChange}/>
+                                <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                             <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                     </div>

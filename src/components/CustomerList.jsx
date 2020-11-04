@@ -1,9 +1,12 @@
 import React from 'react';
 import CustomerItem from './CustomerItem';
+import {useHistory} from 'react-router-dom';
 
 export default function CustomerList({customers}) {
+    const history = useHistory();
+
     const handleAddCustomer = () => {
-        //modal ? 
+        history.push("/new-customer");
     }
 
     return (
