@@ -15,7 +15,7 @@ export default function CustomerList({customers}) {
                 <h3>Customer List</h3>
                 <button className="btn btn-info" onClick={handleAddCustomer}>Add Customer</button>
             </div>
-            <ul className="list-group list-group-flush my-3">
+            <ul className="list-group list-group-flush my-3 col-md-6 offset-3">
                 {customers && customers.map(customer => <CustomerItem customer={customer} key={customer.id}/>)}
             </ul>
         </div>

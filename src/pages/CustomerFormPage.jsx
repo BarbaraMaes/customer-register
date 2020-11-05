@@ -4,6 +4,8 @@ import {useHistory, useLocation} from 'react-router-dom';
 import {UserContext} from '../context/userContext';
 import {DataContext} from '../context/dataContext';
 
+import Container from '../styles/Container';
+
 export default function AddCustomerPage() {
     const [customer, setCustomer] = useState(null);
     const history = useHistory();

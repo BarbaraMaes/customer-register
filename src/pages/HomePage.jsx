@@ -6,12 +6,16 @@ import {DataContext} from '../context/dataContext';
 import {UserContext} from '../context/userContext';
 import UserActions from '../functions/UserActions';
 
+import Container from '../styles/Container';
+
 
 export default function HomePage() {
     const {data} = useContext(DataContext);
     const {user, setUser} = useContext(UserContext);
     const userActions = new UserActions();
+    const history = useHistory();
    
+    //remove isLoggedin
     useEffect(async () => {
         isLoggedIn();
     }, []) 
@@ -25,6 +29,9 @@ export default function HomePage() {
             token: token
         })
         }
+        else {
+            history.push("/");
+        }  
     }
 
     return (

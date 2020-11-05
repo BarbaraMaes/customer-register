@@ -37,8 +37,10 @@ export default class {
 
     editCustomer = async(args) => {
         const {payload, token, id} = args;
+        console.log(payload); 
+        console.log(token);
         try {
-            const response = await fetch(`${ROOT_URL}/api/v1/customers/${id}`, {
+            const response = await fetch(`${ROOT_URL}/api/v1/customers/${id}/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type" : 'application/json', 
@@ -57,7 +59,7 @@ export default class {
         const {id, token} = args; 
         console.log(token);
         try {
-            const response = await fetch(`${ROOT_URL}/api/v1/customers/${id}`, {
+            const response = await fetch(`${ROOT_URL}/api/v1/customers/${id}/`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type" : 'application/json', 

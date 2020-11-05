@@ -6,6 +6,7 @@ import CustomerDetailPage from './pages/CustomerDetailPage';
 import CustomerFormPage from './pages/CustomerFormPage';
 import DataProvider from './context/dataContext';
 import UserProvider from './context/userContext';
+import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
       <UserProvider>
         <DataProvider>
           <Switch>
-            <Route exact component={HomePage} path="/home"/>
-            <Route exact component={CustomerDetailPage} path="/customer"/>
-            <Route exact component={CustomerFormPage} path="/customer-form"/>
+            <PrivateRoute exact component={HomePage} path="/home"/>
+            <PrivateRoute exact component={CustomerDetailPage} path="/customer"/>
+            <PrivateRoute exact component={CustomerFormPage} path="/customer-form"/>
             <Route exact component={LoginPage} path="/"/>
           </Switch>
         </DataProvider>

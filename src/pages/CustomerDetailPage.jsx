@@ -2,10 +2,14 @@ import React, {useState, useEffect, useContext} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import CustomerActions from '../functions/CustomerActions';
 import {UserContext} from '../context/userContext';
+import {DataContext} from '../context/dataContext';
+
+import Container from '../styles/Container';
 
 export default function CustomerDetailPage(props) {
     const [customer, setCustomer] = useState(null);
     const {user} = useContext(UserContext);
+    const {setData} = useContext(DataContext);
     const location = useLocation();
     const history = useHistory();
     const customerActions = new CustomerActions();
@@ -28,6 +32,8 @@ export default function CustomerDetailPage(props) {
     */ 
     const handleDeleteCustomer = async () => {
         await customerActions.deleteCustomer({token: user.token, id: customer.id}); 
+        const data = await customerActions.getCustomers({token: user.token});
+        setData(data);
         history.push("/home");
     }
 

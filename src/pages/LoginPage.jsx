@@ -5,6 +5,8 @@ import {useHistory} from "react-router-dom";
 import CustomerActions from '../functions/CustomerActions';
 import {DataContext} from '../context/dataContext';
 
+import Container from '../styles/Container';
+
 export default function LoginPage() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -15,7 +17,7 @@ export default function LoginPage() {
     const history = useHistory();
 
     useEffect(async () => {
-        isLoggedIn();
+        //isLoggedIn();
         if(user){
             getData();
         }
@@ -29,14 +31,15 @@ export default function LoginPage() {
     const isLoggedIn = async () => {
         const token = userActions.getToken();
         if(token) {
+            console.log(token);
             const loggedInUser = await userActions.getMe(token);
-        setUser({
-            user: loggedInUser,
-            token: token
-        })
-        history.push({
-            pathname: "/home"
-        });
+            setUser({
+                user: loggedInUser,
+                token: token
+            })
+            history.push({
+                pathname: "/home"
+            });
         }
     }
     
@@ -58,11 +61,11 @@ export default function LoginPage() {
 
 
     return (
-        <div className="container">
+        <Container>
+            <h3 className="display-3 text-white text-center">Login</h3>
             <div className="row justify-content-center m-3">
                 <div className="card col-md-6">
                     <div className="card-body">
-                        <h5 className="card-title">Login</h5>
                             <div className="form-group">
                                 <label htmlFor="email">Email Address</label>
                                 <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
@@ -75,6 +78,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
