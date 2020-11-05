@@ -10,14 +10,14 @@ export default function AddCustomerPage() {
     const location = useLocation();
     const {user} = useContext(UserContext);
     const {setData} = useContext(DataContext);
-    const [name, setName] = useState(null); 
-    const [orgNr, setOrgNr] = useState(null); 
-    const [vatNr, setVatNr] = useState(null); 
-    const [ref, setRef] = useState(null);
-    const [paymentTerm, setPaymentTerm] = useState(null); 
-    const [website, setWebsite] = useState(null); 
-    const [email, setEmail] = useState(null); 
-    const [phone, setPhone] = useState(null); 
+    const [name, setName] = useState(""); 
+    const [orgNr, setOrgNr] = useState(""); 
+    const [vatNr, setVatNr] = useState(""); 
+    const [ref, setRef] = useState("");
+    const [paymentTerm, setPaymentTerm] = useState(""); 
+    const [website, setWebsite] = useState(""); 
+    const [email, setEmail] = useState(""); 
+    const [phone, setPhone] = useState(""); 
 
     const customerActions = new CustomerActions();
 
