@@ -1,14 +1,44 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import UserActions from '../functions/UserActions';
 import {UserContext} from '../context/userContext';
 import {useHistory} from "react-router-dom";
+import CustomerActions from '../functions/CustomerActions';
+import {DataContext} from '../context/dataContext';
 
 export default function LoginPage() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const userActions = new UserActions();
-    const {setUser} = useContext(UserContext);
+    const customerActions = new CustomerActions();
+    const {user, setUser} = useContext(UserContext);
+    const {setData} = useContext(DataContext);
     const history = useHistory();
+
+    useEffect(async () => {
+        isLoggedIn();
+        if(user){
+            getData();
+        }
+    }, [user]) 
+    
+    const getData = async () => {
+        const data = await customerActions.getCustomers({token : user.token});
+        setData(data);
+    }
+
+    const isLoggedIn = async () => {
+        const token = userActions.getToken();
+        if(token) {
+            const loggedInUser = await userActions.getMe(token);
+        setUser({
+            user: loggedInUser,
+            token: token
+        })
+        history.push({
+            pathname: "/home"
+        });
+        }
+    }
     
     const handleLogin = async () => {
         const token = await userActions.login({
@@ -20,6 +50,7 @@ export default function LoginPage() {
             user: user, 
             token: token.token
         });
+        await userActions.setToken(token.token);
         history.push({
             pathname: "/home"
         });

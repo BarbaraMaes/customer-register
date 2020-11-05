@@ -1,14 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react'; 
-import {useLocation} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
+import CustomerActions from '../functions/CustomerActions';
+import {UserContext} from '../context/userContext';
 
 export default function CustomerDetailPage(props) {
     const [customer, setCustomer] = useState(null);
+    const {user} = useContext(UserContext);
     const location = useLocation();
+    const history = useHistory();
+    const customerActions = new CustomerActions();
 
     useEffect(() => {
-        if(location){
+        if(location.data.customer){
             setCustomer(location.data.customer);
-            console.log(customer);
         }
     }, [])
     /* 
@@ -22,9 +26,33 @@ export default function CustomerDetailPage(props) {
     email,
     phoneNumber
     */ 
+    const handleDeleteCustomer = async () => {
+        await customerActions.deleteCustomer({token: user.token, id: customer.id}); 
+        history.push("/home");
+    }
+
+    const handleEditCustomer = async () => {
+        history.push({
+            pathname: "/customer-form", 
+            data: {customer: customer}
+        });
+    }
+
     return (
         <div className="container">
             <h1>DetailPage</h1>
+            {customer && <div className="row">
+                <p className="lead">{customer.name} </p>
+                <p className="lead">{customer.organisationNr} </p>
+                <p className="lead">{customer.vatNr} </p>
+                <p className="lead">{customer.reference} </p>
+                <p className="lead">{customer.paymentTerm} </p>
+                <p className="lead">{customer.website} </p>
+                <p className="lead">{customer.email} </p>
+                <p className="lead">{customer.phoneNumber} </p>
+            </div>}
+            <button className="btn btn-danger" onClick={handleDeleteCustomer}>Delete Customer</button>
+            <button className="btn btn-info" onClick={handleEditCustomer}>Edit Customer</button>
         </div>
     )
 }

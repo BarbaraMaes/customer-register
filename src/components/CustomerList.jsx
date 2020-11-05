@@ -6,7 +6,7 @@ export default function CustomerList({customers}) {
     const history = useHistory();
 
     const handleAddCustomer = () => {
-        history.push("/new-customer");
+        history.push("/customer-form");
     }
 
     return (
