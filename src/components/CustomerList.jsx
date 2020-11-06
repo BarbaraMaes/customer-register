@@ -39,9 +39,10 @@ const ListContainer = styled.div`
 `
 
 const List = styled.ul`
-
     border-radius: 5%; 
     margin: 2rem; 
     padding: 2rem;
     list-style-type: none; 
+    overflow: hidden;
+    overflow-y: scrollable
 `

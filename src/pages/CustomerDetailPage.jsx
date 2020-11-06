@@ -25,17 +25,7 @@ export default function CustomerDetailPage(props) {
             history.push("/home");
         }
     }, [])
-    /* 
-    Visa följande information på Detaljvy för en specifik kund
-    name,
-    organisationNr,
-    vatNr,
-    reference,
-    paymentTerm,
-    website,
-    email,
-    phoneNumber
-    */ 
+    
     const handleDeleteCustomer = async () => {
         await customerActions.deleteCustomer({token: user.token, id: customer.id}); 
         const data = await customerActions.getCustomers({token: user.token});

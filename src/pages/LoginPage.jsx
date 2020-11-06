@@ -58,7 +58,7 @@ const Card = styled.div`
     justify-self: center; 
     width: 40%; 
     height: 40%;
-    grid-column: 1/ span 2;
+    grid-column: 1/ span 3;
     margin: 2rem; 
     padding: 2rem;
 `
