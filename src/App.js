@@ -5,10 +5,13 @@ import HomePage from './pages/HomePage';
 import CustomerDetailPage from './pages/CustomerDetailPage';
 import CustomerFormPage from './pages/CustomerFormPage';
 import DataProvider from './context/dataContext';
-import UserProvider from './context/userContext';
+import UserProvider, {UserContext} from './context/userContext';
 import PrivateRoute from './utils/PrivateRoute';
 
+import React from 'react';
+
 function App() {
+
   return (
     <Router>
       <UserProvider>

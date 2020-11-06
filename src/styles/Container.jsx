@@ -6,6 +6,9 @@ const StyledContainer = styled.div`
     width: 100vw; 
     height: 100vh;
     position: absolute; 
+    display: grid; 
+    grid-template-columns: 15% auto;
+    grid-template-rows: auto
     `
 
 const Container = ({children}) => {

@@ -1,6 +1,10 @@
 import React from 'react';
 import CustomerItem from './CustomerItem';
+import styled from 'styled-components';
 import {useHistory} from 'react-router-dom';
+
+import Button from '../styles/Button';
+import Title from '../styles/Title';
 
 export default function CustomerList({customers}) {
     const history = useHistory();
@@ -10,14 +14,31 @@ export default function CustomerList({customers}) {
     }
 
     return (
-        <div>
-            <div className="row justify-content-around">
-                <h3>Customer List</h3>
-                <button className="btn btn-info" onClick={handleAddCustomer}>Add Customer</button>
+        <ListContainer>
+            <div>
+                <Title>Customer List</Title>
+                <Button onClick={handleAddCustomer}>Add Customer</Button>
             </div>
-            <ul className="list-group list-group-flush my-3 col-md-6 offset-3">
+            <List>
                 {customers && customers.map(customer => <CustomerItem customer={customer} key={customer.id}/>)}
-            </ul>
-        </div>
+            </List>
+        </ListContainer>
     )
 }
+
+const ListContainer = styled.div`
+    margin: auto;
+    margin-top: 5rem;
+    justify-self: center; 
+    width: 60%; 
+
+`
+
+const List = styled.ul`
+    background: #ccc;
+    border: 2px solid #ccc;
+    border-radius: 5%; 
+    list-style-type: none; 
+    margin: 2rem; 
+    padding: 2rem
+`

@@ -1,45 +1,43 @@
 import React, {useContext, useEffect} from 'react';
-import {useHistory} from "react-router-dom";
 import CustomerList from '../components/CustomerList';
 import UserInfo from '../components/UserInfo';
 import {DataContext} from '../context/dataContext';
 import {UserContext} from '../context/userContext';
 import UserActions from '../functions/UserActions';
+import CustomerActions from '../functions/CustomerActions';
 
 import Container from '../styles/Container';
 
-
 export default function HomePage() {
-    const {data} = useContext(DataContext);
+    const {data, setData} = useContext(DataContext);
     const {user, setUser} = useContext(UserContext);
     const userActions = new UserActions();
-    const history = useHistory();
-   
-    //remove isLoggedin
-    useEffect(async () => {
-        isLoggedIn();
-    }, []) 
+    const customerActions = new CustomerActions();
 
-    const isLoggedIn = async () => {
-        const token = userActions.getToken();
-        if(token) {
-            const loggedInUser = await userActions.getMe(token);
+    useEffect(() => {
+        if(!user) getUser();
+        getData();
+    }, [])
+
+    const getUser = async () => {
+        const fetchUser = await userActions.getMe({token: user.token}); 
         setUser({
-            user: loggedInUser,
-            token: token
+            token: user.token,
+            user: fetchUser 
         })
-        }
-        else {
-            history.push("/");
-        }  
-    }
+    };
+    
+    const getData = async() => {
+        const response = await customerActions.getCustomers({token: user.token}); 
+        setData(response);
+    } 
 
     return (
-        <div className="container">
+        <Container>
             {user && <UserInfo user={user.user}/>}
-            <div className="m-5">
+            <div>
                 {data && <CustomerList customers={data.results}/>}
             </div>
-        </div>
+        </Container>
     )
 }

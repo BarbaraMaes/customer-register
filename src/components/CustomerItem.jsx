@@ -1,5 +1,6 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function CustomerItem({customer}) {
     const history = useHistory();
@@ -13,7 +14,16 @@ export default function CustomerItem({customer}) {
 
     return (
         <>
-            <li onClick={handleCustomerDetails} className="list-group-item">{customer.name}</li>
+            <ListItem onClick={handleCustomerDetails}>{customer.name} {customer.email}</ListItem>
+            <hr />
         </>
     )
 }
+
+const ListItem = styled.li`
+    color: #c7596a; 
+    font-weight: bold; 
+    font-size: 1.3rem;
+    display: flex;
+    justify-items: space-around;
+`

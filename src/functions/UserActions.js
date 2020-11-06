@@ -21,7 +21,8 @@ export default class {
         }
     }
 
-    getMe = async (token) => {
+    getMe = async (args) => {
+        const {token} = args;
         try {
             const response = await fetch(`${ROOT_URL}api/v1/me`, {
                 headers: {
