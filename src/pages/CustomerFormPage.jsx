@@ -3,8 +3,11 @@ import CustomerActions from '../functions/CustomerActions';
 import {useHistory, useLocation} from 'react-router-dom';
 import {UserContext} from '../context/userContext';
 import {DataContext} from '../context/dataContext';
+import styled from 'styled-components';
 
 import Container from '../styles/Container';
+import Button from '../styles/Button';
+import Title from '../styles/Title';
 
 export default function AddCustomerPage() {
     const [customer, setCustomer] = useState(null);
@@ -90,7 +93,11 @@ export default function AddCustomerPage() {
     }
 
     return (
-        <div className="container">
+        <Container>
+            <TitleContainer>
+            <Title>{customer ? "Edit Customer" : "Add Customer"}</Title>
+            </TitleContainer>
+            <Form>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input type="text" className="form-control" id="name" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)}/>
@@ -123,7 +130,25 @@ export default function AddCustomerPage() {
                     <label htmlFor="phone">Phone Number</label>
                     <input type="text" className="form-control" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)}/>
                 </div>
-            <button className="btn btn-info" onClick={handleSaveCustomer}>Save</button>
-        </div>
+            <Button onClick={handleSaveCustomer}>Save</Button>
+            </Form>
+        </Container>
     )
 }
+
+const Form = styled.div`
+    justify-self: center; 
+    width: 40%; 
+    grid-column: 1/ span 2;
+    padding: 1rem;
+    color: white;
+    `
+
+const TitleContainer = styled.div`
+    margin-top: 2rem; 
+    display: flex; 
+    width: 100%; 
+    grid-column: 1/ span 2; 
+    justify-content: center; 
+    align-items: center;
+`

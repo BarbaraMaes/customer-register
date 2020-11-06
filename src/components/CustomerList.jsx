@@ -15,10 +15,10 @@ export default function CustomerList({customers}) {
 
     return (
         <ListContainer>
-            <div>
+            <TitleContainer>
                 <Title>Customer List</Title>
                 <Button onClick={handleAddCustomer}>Add Customer</Button>
-            </div>
+            </TitleContainer>
             <List>
                 {customers && customers.map(customer => <CustomerItem customer={customer} key={customer.id}/>)}
             </List>
@@ -26,19 +26,22 @@ export default function CustomerList({customers}) {
     )
 }
 
+const TitleContainer = styled.div`
+    display: flex; 
+    justify-content: space-around
+`
+
 const ListContainer = styled.div`
     margin: auto;
     margin-top: 5rem;
     justify-self: center; 
-    width: 60%; 
-
+    width: 45%; 
 `
 
 const List = styled.ul`
-    background: #ccc;
-    border: 2px solid #ccc;
+
     border-radius: 5%; 
-    list-style-type: none; 
     margin: 2rem; 
-    padding: 2rem
+    padding: 2rem;
+    list-style-type: none; 
 `

@@ -43,7 +43,7 @@ export default function UserInfo({user}) {
     `
 
     const SideBarText = styled.h5`
-        color: white;
+        color: #feeee1;
         margin: 0.3rem;
         word-wrap: break-word;
     `

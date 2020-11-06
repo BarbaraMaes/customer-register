@@ -2,8 +2,11 @@ import React, {useContext, useState, useEffect} from 'react';
 import UserActions from '../functions/UserActions';
 import {UserContext} from '../context/userContext';
 import {useHistory} from "react-router-dom";
+import styled from 'styled-components';
 
 import Container from '../styles/Container';
+import Title from '../styles/Title';
+import Button from '../styles/Button';
 
 export default function LoginPage() {
     const [email, setEmail] = useState(null);
@@ -31,22 +34,33 @@ export default function LoginPage() {
 
     return (
         <Container>
-            <h3 className="display-3 text-white text-center">Login</h3>
-            <div className="row justify-content-center m-3">
-                <div className="card col-md-6">
-                    <div className="card-body">
-                            <div className="form-group">
-                                <label htmlFor="email">Email Address</label>
-                                <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
-                            </div>
-                            <button className="btn btn-primary" onClick={handleLogin}>Login</button>
-                    </div>
+            <Card>
+                <Title>Login</Title>
+                <div>
+                        <div className="form-group">
+                            <label htmlFor="email" className="text-white">Email Address</label>
+                            <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password" className="text-white">Password</label>
+                            <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                        </div>
+                        <Button onClick={handleLogin}>Login</Button>
                 </div>
-            </div>
+            </Card>
         </Container>
     )
 }
+
+const Card = styled.div`
+    margin: auto;
+    margin-top: 5rem;
+    justify-self: center; 
+    width: 40%; 
+    height: 40%;
+    grid-column: 1/ span 2;
+    margin: 2rem; 
+    padding: 2rem;
+`
+/*border: 2px solid #ccc;
+    border-radius: 5%; */

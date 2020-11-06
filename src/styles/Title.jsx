@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components'
 
 const StyledTitle = styled.h4`
-        color: white; 
+        color: #feeee1; 
         font-size: 2rem; 
-        text-align: center
+        text-align: center;
     `
 
 const Title = ({children}) => {

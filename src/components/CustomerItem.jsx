@@ -14,16 +14,25 @@ export default function CustomerItem({customer}) {
 
     return (
         <>
-            <ListItem onClick={handleCustomerDetails}>{customer.name} {customer.email}</ListItem>
-            <hr />
+            <ListItem onClick={handleCustomerDetails}>
+                <p>{customer.name}</p>
+                <p>{customer.email}</p>
+            </ListItem>
+            <Line />
         </>
     )
 }
 
 const ListItem = styled.li`
-    color: #c7596a; 
-    font-weight: bold; 
-    font-size: 1.3rem;
+    color: #feeee1;
+    font-size: 1.1rem;
     display: flex;
-    justify-items: space-around;
+    justify-content: space-between;
 `
+
+const Line = styled.hr`
+    border-color: rgba(165,158,152, 0.6);
+    border-style: inset;
+    border-width: thin;
+`
+
