@@ -25,12 +25,15 @@ export default function CustomerDetailPage(props) {
             history.push("/home");
         }
     }, [])
-    
+
     const handleDeleteCustomer = async () => {
-        await customerActions.deleteCustomer({token: user.token, id: customer.id}); 
+        const {status} = await customerActions.deleteCustomer({token: user.token, id: customer.id}); 
         const data = await customerActions.getCustomers({token: user.token});
         setData(data);
-        history.push("/home");
+        history.push({
+            pathname: "/home", 
+            status: status
+        });
     }
 
     const handleEditCustomer = async () => {
@@ -135,6 +138,9 @@ const Card = styled.div`
     margin: 2rem;
     `
 const ButtonContainer = styled.div`
+    justify-self: center;
+    width: 30%; 
+    min-width: 30vw;
     display: flex; 
     justify-content: space-around; 
     grid-column: 1/ span 2;

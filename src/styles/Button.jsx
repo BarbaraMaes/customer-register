@@ -9,6 +9,8 @@ const StyledButton = styled.button`
         text-align: center; 
         text-decoration: none; 
         font-size: 1.2rem;
+        width: fit-content;
+        height: fit-content
     `
 
 const Button = (props) => {

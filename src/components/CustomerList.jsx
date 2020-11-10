@@ -44,5 +44,5 @@ const List = styled.ul`
     padding: 2rem;
     list-style-type: none; 
     overflow: hidden;
-    overflow-y: scrollable
+    overflow: auto:
 `

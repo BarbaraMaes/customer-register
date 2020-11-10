@@ -29,7 +29,7 @@ export default class {
                 body: JSON.stringify(payload)
             }); 
             const data = await response.json(); 
-            return(data);
+            return({data: data, status: response.status});
         } catch (error) {
             console.log(error);
         }
@@ -37,8 +37,6 @@ export default class {
 
     editCustomer = async(args) => {
         const {payload, token, id} = args;
-        console.log(payload); 
-        console.log(token);
         try {
             const response = await fetch(`${ROOT_URL}/api/v1/customers/${id}/`, {
                 method: "PUT",
@@ -49,7 +47,7 @@ export default class {
                 body: JSON.stringify(payload)
             }); 
             const data = await response.json(); 
-            return(data);
+            return({data: data, status: response.status});
         } catch (error) {
             console.log(error);
         }
@@ -65,9 +63,8 @@ export default class {
                     "Content-Type" : 'application/json', 
                     "Authorization" : 'Bearer ' + token
                 }
-            }); 
-            const data = await response.json(); 
-            return(data);
+            }); ; 
+            return({status: response.status});
         } catch (error) {
             console.log(error);
         }

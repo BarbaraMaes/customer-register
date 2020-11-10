@@ -65,10 +65,13 @@ export default function AddCustomerPage() {
             phoneNumber: phone
             }
         }
-        await customerActions.addCustomer(payload);
+        const {status} = await customerActions.addCustomer(payload);
         const data = await customerActions.getCustomers({token: user.token}); 
         setData(data);
-        history.push("/home");
+        history.push({
+            pathname: "/home", 
+            status: status
+        });
     }
 
     const handleEditCustomer = async () => {
@@ -86,10 +89,13 @@ export default function AddCustomerPage() {
             phoneNumber: phone
             }
         }
-        await customerActions.editCustomer(payload);
+        const {status} = await customerActions.editCustomer(payload);
         const data = await customerActions.getCustomers({token: user.token}); 
         setData(data);
-        history.push("/home");
+        history.push({
+            pathname: "/home", 
+            status: status
+        });
     }
 
     return (
